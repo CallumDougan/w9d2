@@ -2,37 +2,16 @@ var initialize = function(){
   console.log('App started');
   var url = 'https://restcountries.eu/rest/v1';
   var request = new XMLHttpRequest();
-  var countryNameList = [];
+  var countryList = new Dropdown();
+
+
   var dropdown = document.getElementById('Countrylist')
   var section = document.getElementById('info')
 
   request.open('GET', url);
 
-
-
-  var displayDropdown = function(countryNameList) {
-    for (var i = 0; i < countryNameList.length; i++) {
-      
-      var option = document.createElement("option");
-      option.innerText = countryNameList[i];
-
-      var select = document.querySelector("select");
-      select.appendChild(option);
-    };
-  }
-
   request.onload = function() {
-    if (request.status === 200) {
-      console.log("got the data");
-      countriesData = JSON.parse(request.responseText);
-      
-      
-      for (var i = 0; i < countriesData.length; i++) {
-        countryNameList.push(countriesData[i].name);
-      };
-      displayDropdown(countryNameList);
-      displayCountry(localStorage.getItem('Last country'));
-    }
+    countryList.buildCountryList(request);
   }
 
   dropdown.onchange = function(){
