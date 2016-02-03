@@ -59,7 +59,7 @@ window.onload = function(){
     localStorage.setItem('Last country', index)
 
     var blockquote = document.createElement('blockquote')
-    blockquote.innerText = (name + ' - ' + capital + ' - ' + population)
+    blockquote.innerText = (name + ' - ' + capital + ' - ' + Number(population).toLocaleString());
 
     section.appendChild(blockquote)
   }
