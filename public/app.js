@@ -1,4 +1,4 @@
-window.onload = function(){
+var initialize = function(){
   console.log('App started');
   var url = 'https://restcountries.eu/rest/v1';
   var request = new XMLHttpRequest();
@@ -67,3 +67,5 @@ window.onload = function(){
   request.send(null);
 
 };
+
+window.onload = initialize;
