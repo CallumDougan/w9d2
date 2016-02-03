@@ -60,9 +60,10 @@ var initialize = function(){
     var blockquote = document.createElement('blockquote')
     blockquote.innerText = (name + ' - ' + capital + ' - ' + Number(population).toLocaleString());
 
-    section.appendChild(blockquote)
+    section.appendChild(blockquote);
 
-    map.addMarker(latlng, name)
+    map.centreTarget(latlng);
+    map.addMarker(latlng, name);
   }
 
   request.send(null);

@@ -17,6 +17,11 @@ var Map = function(latLng, zoomLevel, icon){
     return marker;
   },
 
+  this.centreTarget = function(latLng){
+    console.log('this', this)
+    this.googleMap.panTo(latLng);
+  }
+
   this.bindClick = function(){
     google.maps.event.addListener(this.googleMap, 'click', function(event){
       this.addInfoWindow(
