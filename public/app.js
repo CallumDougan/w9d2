@@ -62,7 +62,7 @@ var initialize = function(){
 
     section.appendChild(blockquote)
 
-    map.addMarker(latlng)
+    map.addMarker(latlng, name)
   }
 
   request.send(null);

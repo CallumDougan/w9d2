@@ -5,14 +5,15 @@ var Map = function(latLng, zoomLevel, icon){
     icon: icon,
   });
 
-  this.addMarker = function(latLng){
+  this.addMarker = function(latLng, title){
     var marker = new google.maps.Marker({
       position: latLng,
       map: this.googleMap,
       icon: this.googleMap.icon,
       animation: google.maps.Animation.DROP,
-      title: "placeholder"
+      title: title
     });
+    this.addInfoWindow(marker);
     return marker;
   },
 
@@ -20,8 +21,7 @@ var Map = function(latLng, zoomLevel, icon){
     google.maps.event.addListener(this.googleMap, 'click', function(event){
       this.addInfoWindow(
         {lat: event.latLng.lat(), lng: event.latLng.lng()},
-        "Javascript: objectively bad",
-        this.googleMap.icon);
+        "Javascript: objectively bad");
     }.bind(this));
   },
 
@@ -29,13 +29,11 @@ var Map = function(latLng, zoomLevel, icon){
     this.googleMap.setCenter(latLng);
   },
 
-  this.addInfoWindow = function(latLng, title, icon){
-    var marker = this.addMarker(latLng, title, icon);
+  this.addInfoWindow = function(marker){
     marker.addListener('click', function(){
       var infoWindow = new google.maps.InfoWindow({
-        content: "<h2>"+this.title+"</h2>"
+        content: "<h2>"+marker.title+"</h2>"
       });
-
       infoWindow.open(this.map, marker);
     })
   }
