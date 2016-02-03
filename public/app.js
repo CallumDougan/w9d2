@@ -23,7 +23,7 @@ var initialize = function(){
   var locator = new GeoLocator(map);
 
 
-  
+
   request.open('GET', url);
 
   request.onload = function() {
@@ -34,8 +34,8 @@ var initialize = function(){
     var countryName = this.value;
     var countryIndex = null;
 
-    for(index in countryNameList){
-      var testCountryName = countryNameList[index];
+    for(index in dropdown.countryNameList){
+      var testCountryName = dropdown.countryNameList[index];
       if(testCountryName === countryName){
         var countryIndex = index;
         console.log(countryIndex);
@@ -48,8 +48,12 @@ var initialize = function(){
     var name = countriesData[index]['name'];
     var capital = countriesData[index]['capital'];
     var population = countriesData[index]['population'];
+    var lat = countriesData[index]['latlng'][0]
+    var lng = countriesData[index]['latlng'][1]
+    var latlng = {lat, lng}
 
     console.log(name, capital, population);
+
 
     localStorage.setItem('Last country', index)
 
@@ -57,6 +61,8 @@ var initialize = function(){
     blockquote.innerText = (name + ' - ' + capital + ' - ' + Number(population).toLocaleString());
 
     section.appendChild(blockquote)
+
+    map.addMarker(latlng)
   }
 
   request.send(null);
