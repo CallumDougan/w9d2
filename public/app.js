@@ -7,15 +7,16 @@ var initialize = function(){
   var dropdown = new Dropdown();
 
 // VARIABLES FOR DROPDOWN
-  var selector = document.getElementById('Countrylist')
-  var section = document.getElementById('info')
+  var selector = document.getElementById('Countrylist');
+  var section = document.getElementById('info');
+  console.log('section', section)
 
 
   // VARIABLES FOR MAP
-  var centre = {lat: 0, lng: 0}
-  var newMarker = {lat: -40.712784, lng: 74.005941}
+  var centre = {lat: 0, lng: 0};
+  var newMarker = {lat: -40.712784, lng: 74.005941};
   var zoom = 4;
-  var icon = 'http://www.jasondenio.com/wp-content/uploads/2014/11/mapmarker.png'
+  var icon = 'http://www.jasondenio.com/wp-content/uploads/2014/11/mapmarker.png';
   var map = new Map(centre, zoom, icon);
 
   // VARIABLES FOR GEOLOCATOR
@@ -59,7 +60,8 @@ var initialize = function(){
 
     var blockquote = document.createElement('blockquote')
     blockquote.innerText = (name + ' - ' + capital + ' - ' + Number(population).toLocaleString());
-
+console.log(blockquote);
+console.log(section);
     section.appendChild(blockquote);
 
     map.centreTarget(latlng);
