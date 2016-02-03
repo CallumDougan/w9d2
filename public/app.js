@@ -1,20 +1,36 @@
 var initialize = function(){
   console.log('App started');
+
+  // VARIABLES FOR MAP
   var url = 'https://restcountries.eu/rest/v1';
   var request = new XMLHttpRequest();
-  var countryList = new Dropdown();
+  var dropdown = new Dropdown();
 
-
-  var dropdown = document.getElementById('Countrylist')
+// VARIABLES FOR DROPDOWN
+  var selector = document.getElementById('Countrylist')
   var section = document.getElementById('info')
 
+
+  // VARIABLES FOR MAP
+  var centre = {lat: 0, lng: 0}
+  var newMarker = {lat: -40.712784, lng: 74.005941}
+  var zoom = 4;
+  var icon = 'http://www.jasondenio.com/wp-content/uploads/2014/11/mapmarker.png'
+  var map = new Map(centre, zoom, icon);
+
+  // VARIABLES FOR GEOLOCATOR
+
+  var locator = new GeoLocator(map);
+
+
+  
   request.open('GET', url);
 
   request.onload = function() {
-    countryList.buildCountryList(request);
+    dropdown.buildCountryList(request);
   }
 
-  dropdown.onchange = function(){
+  selector.onchange = function(){
     var countryName = this.value;
     var countryIndex = null;
 
